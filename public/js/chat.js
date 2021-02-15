@@ -34,10 +34,10 @@ socket.on('disconnect', function () {
 });
 
 socket.on('updateUserList', function (users) {
-  var ol = jQuery('<ol></ol>');
+  var ol = jQuery('<ul></ul>');
 
   users.forEach(function (user) {
-    ol.append(jQuery('<li></li>').text(user));
+    ol.append(jQuery('<li><></li>').text(user));
   });
 
   jQuery('#users').html(ol);
@@ -90,7 +90,7 @@ locationButton.on('click', function () {
   locationButton.attr('disabled', 'disabled').text('Sending location...');
 
   navigator.geolocation.getCurrentPosition(function (position) {
-    locationButton.removeAttr('disabled').text('Send location');
+    locationButton.removeAttr('disabled').text('Share my location');
     socket.emit('createLocationMessage', {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
